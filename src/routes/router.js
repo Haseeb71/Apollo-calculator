@@ -4,7 +4,7 @@ const controller = require('../controller/controller')
 
 router.post("/login",controller.login);
 
-router.post("/erpApi/api/sendResult/send-result",controller.sendResult);
+router.post("/sendResult/send-result",controller.sendResult);
 
 router.get("/getEmail",controller.getallEmail);
 
