@@ -1,13 +1,13 @@
 const express = require("express");
-var nodemailer = require('nodemailer');
+var nodemailer = require("nodemailer");
 const admin = require("firebase-admin");
-const serviceAccount = require("../controller/apollo-new-be333-firebase-adminsdk-pkue0-d1a84782a3.json");  
-const bcrypt = require('bcrypt');
-
+const serviceAccount = require("../controller/apollo-new-be333-firebase-adminsdk-pkue0-d1a84782a3.json");
+const bcrypt = require("bcrypt");
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://console.firebase.google.com/u/0/project/apollo-new-be333/firestore/data/~2F" 
+  databaseURL:
+    "https://console.firebase.google.com/u/0/project/apollo-new-be333/firestore/data/~2F",
 });
 
 const firestore = admin.firestore();
@@ -17,11 +17,14 @@ const login = async (req, res) => {
     const { email, password } = req.body;
 
     // Get the user document based on the provided email
-    const userQuerySnapshot = await firestore.collection('user').where('email', '==', email).get();
+    const userQuerySnapshot = await firestore
+      .collection("user")
+      .where("email", "==", email)
+      .get();
 
     if (userQuerySnapshot.empty) {
       // No user found with the provided email
-      return res.status(404).json({ status: false, message: 'User not found' });
+      return res.status(404).json({ status: false, message: "User not found" });
     }
 
     // Assuming there's only one user with the given email
@@ -32,36 +35,38 @@ const login = async (req, res) => {
 
     if (isPasswordValid) {
       // Password is valid
-      return res.status(200).json({ status: true, message: 'Login successful' });
+      return res
+        .status(200)
+        .json({ status: true, message: "Login successful" });
     } else {
       // Password is invalid
-      return res.status(401).json({ status: false, message: 'Invalid password' });
+      return res
+        .status(401)
+        .json({ status: false, message: "Invalid password" });
     }
   } catch (error) {
-    console.error('Error checking user:', error);
-    return res.status(500).json({ status: false, message: 'Internal Server Error' });
+    console.error("Error checking user:", error);
+    return res
+      .status(500)
+      .json({ status: false, message: "Internal Server Error" });
   }
 };
 
-const getallEmail = async (req,res) => {
+const getallEmail = async (req, res) => {
   try {
-    // Retrieve all documents from the 'emails' collection
     const snapshot = await firestore.collection("emails").get();
-
-// Extract email data from the documents
-const emails = [];
-snapshot.forEach((doc) => {
-  const emailData = doc.data();
-  emails.push(emailData);
-});
+    const emails = [];
+    snapshot.forEach((doc) => {
+      const emailData = doc.data();
+      emails.push(emailData);
+    });
 
     res.status(200).json({ emails });
   } catch (error) {
     console.error("Error fetching emails:", error);
     res.status(500).json({ error: "Internal server error" });
   }
-}  
-
+};
 
 const sendResult = async (req, res) => {
   const {
@@ -89,37 +94,37 @@ const sendResult = async (req, res) => {
   } = req.body;
 
   // Store email in Firestore
-await firestore.collection('emails').add({
-  mode,
-  howMuchYourHome,
-  howMuchYourAppliance,
-  howMuchOffGrid,
-  stayOn,
-  power240v,
-  howLongOutage,
-  solarSupply,
-  name,
-  email,
-  solarNeeds,
-  batteryNeeds,
-  apollo5k,
-  expansionBattery,
-  solarPanels,
-  maximumInput,
-  totalInput,
-  dailyInput,
-  subTotal,
-  tax,
-  cost,
-});
+  await firestore.collection("emails").add({
+    mode,
+    howMuchYourHome,
+    howMuchYourAppliance,
+    howMuchOffGrid,
+    stayOn,
+    power240v,
+    howLongOutage,
+    solarSupply,
+    name,
+    email,
+    solarNeeds,
+    batteryNeeds,
+    apollo5k,
+    expansionBattery,
+    solarPanels,
+    maximumInput,
+    totalInput,
+    dailyInput,
+    subTotal,
+    tax,
+    cost,
+  });
 
-var transporter = nodemailer.createTransport({
-  service: "gmail",
-  auth: {
-    user: "sales@hysolis.com",
-    pass: "zooujmkdxwawtxpk",
-  },
-});
+  var transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: "sales@hysolis.com",
+      pass: "zooujmkdxwawtxpk",
+    },
+  });
 
   let questionAndResponse = null;
   let header = `
@@ -315,8 +320,8 @@ var transporter = nodemailer.createTransport({
   });
 };
 
-  module.exports = {
-    sendResult,
-    getallEmail,
-    login
-  }
+module.exports = {
+  sendResult,
+  getallEmail,
+  login,
+};
