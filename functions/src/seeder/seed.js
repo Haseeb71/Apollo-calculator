@@ -14,8 +14,8 @@ const firestore = admin.firestore();
 // Define your seed data
 const seedData = [
   {
-    email: 'jhonede@gmail.com',
-    password: '1234'
+    email: 'admin@appolo.com',
+    password: 'admin@123'
   },
   // Add more seed data as needed
 ];
