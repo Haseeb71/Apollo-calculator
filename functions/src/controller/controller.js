@@ -274,11 +274,6 @@ const sendResult = async (req, res) => {
     <div style="min-width: 80px;text-align: right; margin-right: 10px;">${dailyInput}</div>
     <div>kWh</div>
   </div>
-  <div style="display: flex; align-items: center; justify-content: flex-start; margin-bottom: 10px; width: fit-content;">
-    <div style="min-width: 190px; margin-right: 10px; font-size: 12px;">Personal Power</div>
-    <div style="min-width: 80px;text-align: right; margin-right: 10px;">${personalPower}</div>
-    <div>kWh</div>
-  </div
   <div style="font-weight: bold; margin-bottom: 5px; font-size: 15px;">Price:</div>
   <div style="display: flex; align-items: center; justify-content: flex-start; margin-bottom: 10px; width: fit-content;">
     <div style="font-weight: bold; font-size: 14px; min-width: 190px; margin-right: 10px; font-size: 12px;">Base price</div>
