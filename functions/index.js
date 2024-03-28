@@ -6,11 +6,11 @@ const router = require("./src/routes/router");
 
 const app = express();
 
-// Enable CORS for all origins
-app.use(cors());
 
 app.use(express.json());
 app.use("/", router);
+// Enable CORS for all origins
+app.use(cors());
 
 
 // Error handling middleware

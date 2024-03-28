@@ -6,7 +6,7 @@ router.post("/login",controller.login);
 
 router.post("/sendResult/send-result",controller.sendResult);
 
-router.get("/getEmail",controller.getallEmail);
+router.post("/getEmail",controller.getallEmail);
 
 
 module.exports = router;
