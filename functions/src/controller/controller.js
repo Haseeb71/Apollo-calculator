@@ -94,7 +94,6 @@ const sendResult = async (req, res) => {
     personalPower = "",
     phone = "",
   } = req.body;
-  
 
   // Store email in Firestore
   await firestore.collection("emails").add({
@@ -136,8 +135,11 @@ const sendResult = async (req, res) => {
     <div style="font-size: 16px;">
       Name: ${name}
     </div>
-    <div style="font-size: 16px; margin-bottom: 20px;">
+    <div style="font-size: 16px; ">
       Email: ${email}
+    </div>
+    <div style="font-size: 16px; margin-bottom: 20px;">
+    Phone: ${phone}
     </div>
   `;
   let stayOnString = "";
