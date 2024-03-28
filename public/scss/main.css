@@ -1,0 +1,227 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+body {
+  background: #f6f6f6;
+  font-family: "Poppins", sans-serif;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 0 0;
+}
+.logo a img {
+  width: 160px;
+}
+
+.login-container {
+  max-width: 800px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 3rem auto;
+  background-color: #fff;
+  box-shadow: 0 0 3px gray;
+  border-radius: 8px;
+  padding: 3rem 5rem;
+}
+.login-container .title {
+  font-size: 22px;
+  text-transform: capitalize;
+  font-weight: 600;
+  padding: 0.8rem 0;
+}
+.login-container form {
+  width: 70%;
+}
+.login-container form fieldset {
+  display: flex;
+  align-items: flex-start;
+  justify-content: none;
+  flex-direction: column;
+  padding-bottom: 1rem;
+  border: 0;
+}
+.login-container form fieldset label {
+  font-size: 14px;
+  font-weight: 500;
+  padding-bottom: 1px;
+  color: #949191;
+}
+.login-container form fieldset input {
+  width: 100%;
+  padding: 10px 10px;
+  border-radius: 6px;
+  border: 1.5px solid #dcdcdc;
+}
+.login-container form fieldset input:active, .login-container form fieldset input:focus, .login-container form fieldset input:focus-visible {
+  border-color: #feb718;
+  outline: #feb718;
+}
+.login-container form button {
+  border: 2px solid #feb718;
+  margin: 0.6rem auto 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 14px;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 600;
+  background-color: #feb718;
+  border-radius: 8px;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  letter-spacing: 0.6px;
+}
+.login-container form button a {
+  color: #000;
+}
+.login-container form button:hover {
+  background-color: transparent;
+  color: #feb718;
+}
+.login-container form button:hover a {
+  color: #feb718;
+}
+.login-container .forgot-password a {
+  display: block;
+  font-size: 12px;
+  color: #000;
+  font-weight: 600;
+  padding: 4px 0 1rem;
+}
+.login-container .dont-account {
+  text-align: center;
+}
+.login-container .dont-account span {
+  display: block;
+  font-size: 12px;
+  color: #000;
+  padding-bottom: 1rem;
+}
+.login-container .dont-account button {
+  background-color: transparent;
+  outline: none;
+  border: 1.5px solid transparent;
+  padding: 8px 14px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.3s ease-in-out;
+}
+.login-container .dont-account button a {
+  font-size: 12px;
+  color: #000;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.6px;
+}
+.login-container .dont-account button:hover {
+  border: 1.5px solid #feb718;
+}
+.login-container .dont-account button:hover a {
+  color: #feb718;
+}
+
+.table-title{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 1rem;
+font-size: 16px !important;
+}
+
+.table-title .login-btn{
+  border: 1px solid #feb718;
+  padding: 7px 12px;
+  font-size: 14px;
+  text-transform: capitalize;
+  font-weight: 500;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.table-title .login-btn:hover{
+  background-color: #feb718 !important;
+  color: #000;
+}
+
+.user-data-table {
+  max-width: 1100px;
+  width: 100%;
+  margin: 2rem auto;
+}
+.user-data-table .data_table_title {
+  font-size: 22px;
+  font-weight: 600;
+
+}
+.user-data-table .table-container {
+  box-shadow: 0 0 3px gray;
+  padding: 2rem;
+  border-radius: 8px;
+  overflow-x: scroll;
+}
+.user-data-table .table-container table thead tr,
+.user-data-table .table-container table thead th {
+  padding:0 3rem 1rem 0 !important;
+  text-transform: capitalize !important;
+  padding: 0 3rem;
+ 
+}
+.user-data-table .table-container table thead tr {
+  background-color: transparent !important;
+}
+.user-data-table .table-container table thead tr th {
+  font-size: 13px;
+  color: gray;
+  padding-top: 2rem !important;
+  text-align: center !important;
+  padding-left: 0 !important;
+  font-weight: 600 !important;
+}
+.user-data-table .table-container table tbody tr:nth-child(odd) {
+  background-color: rgba(201, 195, 195, 0.341) !important;
+}
+.user-data-table .table-container table tbody tr,
+.user-data-table .table-container table tbody td {
+  padding: 0.8rem  !important;
+}
+.user-data-table .table-container table tbody tr td b {
+  font-weight: 600;
+  color: #000;
+  font-size: 12px !important;
+}
+.user-data-table .table-container table tbody tr td {
+  font-size: 13px;
+  color: #807c7c;
+  text-align: start !important;
+}
+.user-data-table .table-container table tbody tr .actiontd {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1rem;
+}
+.user-data-table .table-container .dataTables_wrapper .dataTables_info,
+.user-data-table .table-container .dataTables_wrapper .dataTables_paginate {
+  padding-top: 2em;
+  font-size: 13px !important;
+}
+.user-data-table .table-container .dataTables_wrapper .dataTables_length,
+.user-data-table .table-container .dataTables_wrapper .dataTables_filter {
+  font-size: 13px;
+}/*# sourceMappingURL=main.css.map */

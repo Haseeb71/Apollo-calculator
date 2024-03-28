@@ -1,0 +1,228 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+$font-family: "Poppins", sans-serif;
+$main-color: #feb718;
+$primary-color: #f6f6f6;
+
+@mixin flex($align, $justify) {
+  display: flex;
+  align-items: $align;
+  justify-content: $justify;
+}
+a {
+  text-decoration: none;
+}
+
+body {
+  background: $primary-color;
+  font-family: $font-family;
+}
+
+.logo {
+  @include flex(center, center);
+  padding: 1rem 0 0;
+  a img {
+    width: 160px;
+  }
+}
+
+.login-container {
+  max-width: 800px;
+  width: 100%;
+  @include flex(center, center);
+  flex-direction: column;
+  margin: 3rem auto;
+  background-color: #fff;
+  box-shadow: 0 0 3px gray;
+  border-radius: 8px;
+  padding: 3rem 5rem;
+
+  .title {
+    font-size: 22px;
+    text-transform: capitalize;
+    font-weight: 600;
+    padding: 0.8rem 0;
+  }
+
+  form {
+    width: 70%;
+
+    fieldset {
+      @include flex(flex-start, none);
+      flex-direction: column;
+      padding-bottom: 1rem;
+      border: 0;
+
+      label {
+        font-size: 14px;
+        font-weight: 500;
+        padding-bottom: 1px;
+        color: #949191;
+      }
+
+      input {
+        width: 100%;
+        padding: 10px 10px;
+        border-radius: 6px;
+        border: 1.5px solid #dcdcdc;
+
+        &:active,
+        &:focus,
+        &:focus-visible {
+          border-color: $main-color;
+          outline: $main-color;
+        }
+      }
+    }
+
+    button {
+      border: 2px solid $main-color;
+      margin: 0.6rem auto 1rem;
+      @include flex(center, center);
+      padding: 8px 14px;
+      text-transform: uppercase;
+      font-size: 14px;
+      font-weight: 600;
+      background-color: $main-color;
+      border-radius: 8px;
+      transition: all 0.3s ease-in-out;
+      cursor: pointer;
+      letter-spacing: 0.6px;
+
+      a {
+        color: #000;
+      }
+
+      &:hover {
+        background-color: transparent;
+        color: $main-color;
+      }
+      &:hover a {
+        color: $main-color;
+      }
+    }
+  }
+
+  .forgot-password {
+    a {
+      display: block;
+      font-size: 12px;
+      color: #000;
+      font-weight: 600;
+      padding: 4px 0 1rem;
+    }
+  }
+
+  .dont-account {
+    text-align: center;
+    span {
+      display: block;
+      font-size: 12px;
+      color: #000;
+      padding-bottom: 1rem;
+    }
+    button {
+      background-color: transparent;
+      outline: none;
+      border: 1.5px solid transparent;
+      padding: 8px 14px;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: all 0.3s ease-in-out;
+      a {
+        font-size: 12px;
+        color: #000;
+        text-transform: uppercase;
+        font-weight: 600;
+        letter-spacing: 0.6px;
+      }
+
+      &:hover {
+        border: 1.5px solid $main-color;
+      }
+      &:hover a {
+        color: $main-color;
+      }
+    }
+  }
+}
+
+.user-data-table {
+  max-width: 1100px;
+  width: 100%;
+  margin: 2rem auto;
+
+  .data_table_title {
+    font-size: 26px;
+    font-weight: 600;
+    padding-bottom: 1rem;
+  }
+
+  .table-container {
+    box-shadow: 0 0 3px gray;
+    padding: 2rem;
+    border-radius: 8px;
+
+    table {
+      thead {
+        tr,
+        th {
+          padding-bottom: 1rem !important;
+        }
+        tr {
+          background-color: transparent !important;
+          th {
+            font-size: 13px;
+            color: gray;
+            padding-top: 2rem !important;
+            text-align: start;
+            padding-left: 0 !important;
+            padding: 0 1rem !important;
+            text-transform: capitalize !important;
+          }
+        }
+      }
+
+      tbody {
+        tr:nth-child(odd) {
+          background-color: #c9c3c318 !important;
+        }
+        tr,
+        td {
+          padding: 0.8rem 0 !important;
+        }
+        tr {
+          td b {
+            font-weight: 600;
+            color: #000;
+            font-size: 12px !important;
+          }
+          td {
+            font-size: 13px;
+            color: #807c7c;
+          }
+          .actiontd {
+            @include flex(center, flex-start);
+            gap: 1rem;
+          }
+        }
+      }
+    }
+
+    .dataTables_wrapper .dataTables_info,
+    .dataTables_wrapper .dataTables_paginate {
+      padding-top: 2em;
+      font-size: 13px !important;
+    }
+
+    .dataTables_wrapper .dataTables_length,
+    .dataTables_wrapper .dataTables_filter {
+      font-size: 13px;
+    }
+  }
+}

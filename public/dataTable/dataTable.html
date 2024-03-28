@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link rel="stylesheet" href="../scss/main.css" />
+    <title>Data Table</title>
+  </head>
+  <body>
+    <script>
+      // Check if the user is logged in
+      const isLoggedIn = localStorage.getItem('isLoggedIn');
+  console.log(isLoggedIn);
+      if (!isLoggedIn) {
+        // If not logged in, redirect to the login page
+        window.location.href = '../login/login.html';
+      }
+    </script>
+    <div class="user-data-table">
+      <div class="logo">
+        <a href="#">
+          <img src="../logo/logo_200x.webp" alt="" />
+        </a>
+      </div>
+      <div class="table-title">
+        <h4 class="data_table_title">Email Details</h4>
+        <a href="../login/login.html">
+
+          <button class="login-btn">logout</button>
+        </a>
+      </div>
+      <div class="table-container">
+        <table
+          id="example"
+          class="display"
+          cellspacing="0"
+          width="100%"
+          border="0"
+        >
+          <thead>
+            <tr>
+              <th>Sr#</th>
+              <th>apollo5k</th>
+              <th>batteryNeeds</th>
+              <th>cost</th>
+              <th>dailyInput</th>
+              <th>email</th>
+              <th>expansionBattery</th>
+              <th>howLongOutage</th>
+              <th>howMuchOffGrid</th>
+              <th>howMuchYourAppliance</th>
+              <th>howMuchYourHome</th>
+              <th>maximumInput</th>
+              <th>mode</th>
+              <th>name</th>
+              <th>power240v</th>
+              <th>solarNeeds</th>
+              <th>solarPanels</th>
+              <th>solarSupply</th>
+              <th>stayOn</th>
+              <th>subTotal</th>
+              <th>tax</th>
+              <th>totalInput</th>
+            </tr>
+          </thead>
+          <tbody id="tableBody"></tbody>
+        </table>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+      // Logout button click event
+      $('.login-btn').click(function () {
+        // Use AJAX to clear localStorage on the server (optional)
+  
+        // Clear localStorage on the client side
+        localStorage.clear();
+  
+        // Redirect to the login page
+        window.location.href = '../login/login.html';
+      });
+    </script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        // Use the fetch API to get data from the route
+        fetch("https://us-central1-apollo-new-be333.cloudfunctions.net/api/getEmail",{
+          method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            // If you need to send any data in the request body, add it here
+            body: JSON.stringify({})
+        })
+          .then(function (response) {
+            // Check if the response is successful
+            if (response.ok) {
+              // Parse the response as JSON
+              return response.json();
+            } else {
+              // Throw an error if the response is not successful
+              throw new Error("Something went wrong");
+            }
+          })
+          .then(function (data) {
+            console.log("Data  == ", data);
+            // Do something with the data
+            if (data.emails && Array.isArray(data.emails)) {
+              // If there's an 'emails' property and it's an array
+              populateTable(data.emails);
+              // Initialize DataTable after populating the table
+              $("#example").DataTable({
+                order: [],
+                paging: true,
+                searching: true,
+                ordering: true,
+                pagination: true,
+              });
+            } else {
+              console.error("Invalid data structure:", data);
+            }
+          })
+          .catch(function (error) {
+            // Handle any errors
+            console.error("Error fetching data from the route:", error);
+          });
+
+        function populateTable(emails) {
+          var tableBody = $("#tableBody");
+
+          // Dynamically create body rows
+          emails.forEach(function (rowData, index) {
+            // Use the variables to create the body row
+            var bodyRow = `<tr>
+            <td>${index + 1}</td>
+            <td>${rowData.apollo5k}</td>
+            <td>${rowData.batteryNeeds}</td>
+            <td>${rowData.cost}</td>
+            <td>${rowData.dailyInput}</td>
+            <td>${rowData.email}</td>
+            <td>${rowData.expansionBattery}</td>
+            <td>${rowData.howLongOutage}</td>
+            <td>${rowData.howMuchOffGrid}</td>
+            <td>${rowData.howMuchYourAppliance}</td>
+            <td>${rowData.howMuchYourHome}</td>
+            <td>${rowData.maximumInput}</td>
+            <td>${rowData.mode}</td>
+            <td>${rowData.name}</td>
+            <td>${rowData.power240v}</td>
+            <td>${rowData.solarNeeds}</td>
+            <td>${rowData.solarPanels}</td>
+            <td>${rowData.solarSupply}</td>
+            <td>${rowData.stayOn}</td>
+            <td>${rowData.subTotal}</td>
+            <td>${rowData.tax}</td>
+            <td>${rowData.totalInput}</td>
+          </tr>`;
+            tableBody.append(bodyRow);
+          });
+        }
+      });
+    </script>
+  </body>
+</html>
