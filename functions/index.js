@@ -1,17 +1,23 @@
 const functions = require("firebase-functions");
 const express = require("express");
-const cors = require("cors"); // Import cors package
 const mongoose = require("mongoose");
 const router = require("./src/routes/router");
 
+
 const app = express();
 
+// Allow CORS from all origins
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  if (req.method === "OPTIONS") {
+    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+    return res.status(200).json({});
+  }
+  next();
+});
 
 app.use(express.json());
-app.use("/", router);
-// Enable CORS for all origins
-app.use(cors());
-
 
 // Error handling middleware
 app.use((err, req, res, next) => {
@@ -19,5 +25,9 @@ app.use((err, req, res, next) => {
   res.status(500).send("Something broke!");
 });
 
+// Routes
+app.use("/", router);
+
+// Firebase Function
 exports.api = functions.https.onRequest(app);
 
