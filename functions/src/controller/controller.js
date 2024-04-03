@@ -170,26 +170,26 @@ const sendResult = async (req, res) => {
   }
   if (mode === 0) {
     questionAndResponse = `
-    <div style="font-weight: bold; font-size: 16px;">
+    <div style="font-weight: bold; font-size: 16px; ">
     Why are you looking for a personal power grid?
     </div>
-    <div style="padding-left: 12px; font-size: 14px;">
+    <div style="padding-left: 12px; font-size: 14px; margin-bottom: 20px; margin-top: 5px;">
       I want backup power during outages.
     </div>
-    <div style="font-weight: bold; font-size: 16px;">How much power (kWh) does your home use on average each day?</div>
-    <div style="padding-left: 12px; font-size: 14px;">
+    <div style="font-weight: bold; font-size: 16px; ">How much power (kWh) does your home use on average each day?</div>
+    <div style="padding-left: 12px; font-size: 14px; margin-bottom: 20px; margin-top: 5px;">
       ${howMuchYourHome}
     </div>
-    <div style="font-weight: bold; font-size: 16px;">When the power goes out, what do you want to stay on?</div>
-    <div style="padding-left: 12px; font-size: 14px;">
+    <div style="font-weight: bold; font-size: 16px; ">When the power goes out, what do you want to stay on?</div>
+    <div style="padding-left: 12px; font-size: 14px; margin-bottom: 20px; margin-top: 5px;">
       ${stayOnString}
     </div>
-    <div style="font-weight: bold; font-size: 16px;">Do you need to power any 240V Appliances?</div>
-    <div style="padding-left: 12px; font-size: 14px;">
+    <div style="font-weight: bold; font-size: 16px; margin-top: 5px; ">Do you need to power any 240V Appliances?</div>
+    <div style="padding-left: 12px; font-size: 14px; margin-bottom: 20px; margin-top: 5px;">
       ${power240v}
     </div>
-    <div style="font-weight: bold; font-size: 16px;">How long of an outage do you want to be prepared for?</div>
-    <div style="padding-left: 12px; font-size: 14px;">
+    <div style="font-weight: bold; font-size: 16px; margin-bottom: 5px; ">How long of an outage do you want to be prepared for?</div>
+    <div style="padding-left: 12px; font-size: 14px; margin-bottom: 20px; margin-top: 5px; ">
       ${howLongOutageString}
     </div>
     `;
@@ -234,61 +234,64 @@ const sendResult = async (req, res) => {
 
   const htmlContent = `${header}${questionAndResponse}
   <div style="font-weight: bold; font-size: 18px; margin-top: 20px;">
-    Your Energy Requirements
-  </div>
-  <div style="display: flex; align-items: center; justify-content: flex-start; margin-bottom: 10px; width: fit-content;">
-    <div style="min-width: 190px; margin-right: 10px; font-size: 12px;">Energy production (solar)</div>
-    <div style="min-width: 80px;text-align: right; margin-right: 10px;">${solarNeeds}</div>
-    <div>kWh</div>
-  </div>
-  <div style="display: flex; align-items: center; justify-content: flex-start; margin-bottom: 10px; width: fit-content;">
-    <div style="min-width: 190px; margin-right: 10px; font-size: 12px;">Energy storage (batter)</div>
-    <div style="min-width: 80px;text-align: right; margin-right: 10px;">${batteryNeeds}</div>
-    <div>kWh</div>
-  </div>
-  <div style="font-weight: bold; margin-bottom: 5px; font-size: 18px; margin-top: 20px;">Our System Recommendation</div>
-  <div style="font-weight: bold; margin-bottom: 5px; font-size: 15px;">Configuration:</div>
-  <div style="display: flex; align-items: center; justify-content: flex-start; margin-bottom: 10px; width: fit-content;">
-    <div style="min-width: 190px; margin-right: 10px; font-size: 12px;">Apollo 5K:</div>
-    <div style="min-width: 80px;text-align: right; margin-right: 10px;">${apollo5k}</div>
-  </div>
-  <div style="display: flex; align-items: center; justify-content: flex-start; margin-bottom: 10px; width: fit-content;">
-    <div style="min-width: 190px; margin-right: 10px; font-size: 12px;">Expansion Battery</div>
-    <div style="min-width: 80px;text-align: right; margin-right: 10px;">${expansionBattery}</div>
-  </div>
-  <div style="display: flex; align-items: center; justify-content: flex-start; margin-bottom: 10px; width: fit-content;">
-    <div style="min-width: 190px; margin-right: 10px; font-size: 12px;">410 Watt Solar Panel</div>
-    <div style="min-width: 80px;text-align: right; margin-right: 10px;">${solarPanels}</div>
-  </div>
-  <div style="font-weight: bold; margin-bottom: 5px; font-size: 15px;">Power Generation:</div>
-  <div style="display: flex; align-items: center; justify-content: flex-start; margin-bottom: 10px; width: fit-content;">
-    <div style="min-width: 190px; margin-right: 10px; font-size: 12px;">Maximum continuous load</div>
-    <div style="min-width: 80px;text-align: right; margin-right: 10px;">${maximumInput}</div>
-    <div>kWh</div>
-  </div>
-  <div style="display: flex; align-items: center; justify-content: flex-start; margin-bottom: 10px; width: fit-content;">
-    <div style="min-width: 190px; margin-right: 10px; font-size: 12px;">Total battery capacity</div>
-    <div style="min-width: 80px;text-align: right; margin-right: 10px;">${totalInput}</div>
-    <div>kWh</div>
-  </div>
-  <div style="display: flex; align-items: center; justify-content: flex-start; margin-bottom: 10px; width: fit-content;">
-    <div style="min-width: 190px; margin-right: 10px; font-size: 12px;">Daily solar power generated</div>
-    <div style="min-width: 80px;text-align: right; margin-right: 10px;">${dailyInput}</div>
-    <div>kWh</div>
-  </div>
-  <div style="font-weight: bold; margin-bottom: 5px; font-size: 15px;">Price:</div>
-  <div style="display: flex; align-items: center; justify-content: flex-start; margin-bottom: 10px; width: fit-content;">
-    <div style="font-weight: bold; font-size: 14px; min-width: 190px; margin-right: 10px; font-size: 12px;">Base price</div>
-    <div style="min-width: 80px;text-align: right; margin-right: 10px;">${subTotal}</div>
-  </div>
-  <div style="display: flex; align-items: center; justify-content: flex-start; margin-bottom: 10px; width: fit-content;">
-    <div style="min-width: 190px; margin-right: 10px; font-size: 12px;">Less: Federal tax credit (30%)</div>
-    <div style="min-width: 80px;text-align: right; margin-right: 10px; border-bottom: 1px solid black;">${tax}</div>
-  </div>
-  <div style="display: flex; align-items: center; justify-content: flex-start; margin-bottom: 10px; width: fit-content;">
-    <div style="font-weight: bold; font-size: 14px; min-width: 190px; margin-right: 10px; font-size: 12px;">Net price</div>
-    <div style="min-width: 80px;text-align: right; margin-right: 10px; border-bottom: 4px double black; font-weight: bold;">${cost}</div>
-  </div>
+  Your Energy Requirements
+</div>
+
+<div style="display: flex; align-items: center; justify-content: flex-start; margin-bottom: 10px; width: fit-content;">
+  <div style="min-width: 190px; margin-right: 10px; font-size: 12px;">Energy production (solar)</div>
+  <div style="min-width: 80px;text-align: right; margin-right: 10px;">${solarNeeds}</div>
+  <div>kWh</div>
+</div>
+
+<div style="display: flex; align-items: center; justify-content: flex-start;  width: fit-content;">
+  <div style="min-width: 190px; margin-right: 10px; font-size: 12px; ">Energy storage (batter)</div>
+  <div style="min-width: 80px;text-align: right; margin-right: 10px; ">${batteryNeeds}</div>
+  <div>kWh</div>
+</div>
+<div style="font-weight: bold; margin-bottom: 5px; font-size: 18px; margin-top: 20px;">Our System Recommendation</div>
+<div style="font-weight: bold; margin-bottom: 5px; font-size: 15px; margin-bottom: 10px;">Configuration:</div>
+<div style="display: flex; align-items: center; justify-content: flex-start; margin-bottom: 10px; width: fit-content;">
+  <div style="min-width: 190px; margin-right: 10px; font-size: 12px;">Apollo 5K:</div>
+  <div style="min-width: 80px;text-align: right; margin-right: 10px;">${apollo5k}</div>
+  
+</div>
+<div style="display: flex; align-items: center; justify-content: flex-start; margin-bottom: 10px; width: fit-content;">
+  <div style="min-width: 190px; margin-right: 10px; font-size: 12px;">Expansion Battery</div>
+  <div style="min-width: 80px;text-align: right; margin-right: 10px;">${expansionBattery}</div>
+</div>
+<div style="display: flex; align-items: center; justify-content: flex-start; margin-bottom: 10px; width: fit-content;">
+  <div style="min-width: 190px; margin-right: 10px; font-size: 12px;">410 Watt Solar Panel</div>
+  <div style="min-width: 80px;text-align: right; margin-right: 10px;">${solarPanels}</div>
+</div>
+<div style="font-weight: bold; margin-bottom: 5px; font-size: 15px; margin-bottom: 10px; margin-top:10px">Power Generation:</div>
+<div style="display: flex; align-items: center; justify-content: flex-start; margin-bottom: 10px; width: fit-content;">
+  <div style="min-width: 190px; margin-right: 10px; font-size: 12px;">Maximum continuous load</div>
+  <div style="min-width: 80px;text-align: right; margin-right: 10px;">${maximumInput}</div>
+  <div>kWh</div>
+</div>
+<div style="display: flex; align-items: center; justify-content: flex-start; margin-bottom: 10px; width: fit-content;">
+  <div style="min-width: 190px; margin-right: 10px; font-size: 12px;">Total battery capacity</div>
+  <div style="min-width: 80px;text-align: right; margin-right: 10px;">${totalInput}</div>
+  <div>kWh</div>
+</div>
+<div style="display: flex; align-items: center; justify-content: flex-start; margin-bottom: 10px; width: fit-content;">
+  <div style="min-width: 190px; margin-right: 10px; font-size: 12px;">Daily solar power generated</div>
+  <div style="min-width: 80px;text-align: right; margin-right: 10px;">${dailyInput}</div>
+  <div>kWh</div>
+</div>
+<div style="font-weight: bold; margin-bottom: 5px; font-size: 15px;">Price:</div>
+<div style="display: flex; align-items: center; justify-content: flex-start; margin-bottom: 10px; width: fit-content;">
+  <div style="font-weight: bold; font-size: 14px; min-width: 190px; margin-right: 10px; font-size: 12px;">Base price</div>
+  <div style="min-width: 80px;text-align: right; margin-right: 10px;">${subTotal}</div>
+</div><div style="min-width:80px;text-align:right;margin-right:10px">323 haseeb 0</div>
+<div style="display: flex; align-items: center; justify-content: flex-start; margin-bottom: 10px; width: fit-content;">
+  <div style="min-width: 190px; margin-right: 10px; font-size: 12px;">Less: Federal tax credit (30%)</div>
+  <div style="min-width: 80px;text-align: right; margin-right: 10px; border-bottom: 1px solid black;">${tax}</div>
+</div>
+<div style="display: flex; align-items: center; justify-content: flex-start; margin-bottom: 10px; width: fit-content;">
+  <div style="font-weight: bold; font-size: 14px; min-width: 190px; margin-right: 10px; font-size: 12px;">Net price</div>
+  <div style="min-width: 80px;text-align: right; margin-right: 10px; border-bottom: 4px double black; font-weight: bold;">${cost}</div>
+</div>
   `;
 
   // let mailOptions = {
