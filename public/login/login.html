@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../scss/main.css" />
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <title>Login</title>
+  </head>
+  <body>
+    <div class="login-container">
+      <div class="logo">
+        <a href="#">
+          <img src="../logo/logo_200x.webp" alt="" />
+        </a>
+      </div>
+      <h1 class="title">Admin login</h1>
+      <form>
+        <fieldset>
+          <label>Email</label>
+          <input
+            type="email"
+            placeholder="Enter your email"
+            required
+            autocomplete="off"
+          />
+        </fieldset>
+        <fieldset>
+          <label>Password</label>
+          <input
+            type="password"
+            placeholder="Enter your password"
+            required
+            autocomplete="off"
+          />
+        </fieldset>
+        <div id="errorMessage" style="color: red;"></div>
+        <button type="button" id="loginButton">Login</button>
+      </form>
+      <!-- <div class="forgot-password">
+        <a href="#">Forgot password?</a>
+      </div>
+      <div class="dont-account">
+        <span>Don't have an account?</span>
+        <button>
+          <a href="#">signup</a>
+        </button>
+      </div> -->
+    </div>
+    <script>
+      $(document).ready(function () {
+        $('#loginButton').click(function () {
+          // Get values from form fields
+          const email = $('input[type="email"]').val();
+          const password = $('input[type="password"]').val();
+    
+          // Prepare data object
+          const data = {
+            email: email,
+            password: password,
+          };
+    
+          // Make a POST request using jQuery AJAX
+          $.ajax({
+            type: 'POST',
+            url: 'https://us-central1-apollo-new-be333.cloudfunctions.net/api/login',
+            data: JSON.stringify(data),
+            contentType: 'application/json',
+          })
+            .done(function (response) {
+              console.log('Success:', response);
+              // Successful login
+              localStorage.setItem('isLoggedIn', 'true');
+              // Redirect to dataTable.html on successful login
+          window.location.href = '../dataTable/dataTable.html';
+            })
+            .fail(function (error) {
+              console.error('Error:', error);
+              // Show error message and do any additional handling
+          $('#errorMessage').text('Invalid username or password');
+            })
+            .always(function () {
+              console.log('Always called');
+            });
+        });
+      });
+    </script>          
+  </body>
+</html>
+
