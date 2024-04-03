@@ -283,7 +283,6 @@ const sendResult = async (req, res) => {
 <div style="display: flex; align-items: center; justify-content: flex-start; margin-bottom: 10px; width: fit-content;">
   <div style="font-weight: bold; font-size: 14px; min-width: 190px; margin-right: 10px; font-size: 12px;">Base price</div>
   <div style="min-width: 80px;text-align: right; margin-right: 10px;">${subTotal}</div>
-</div><div style="min-width:80px;text-align:right;margin-right:10px">323 haseeb 0</div>
 <div style="display: flex; align-items: center; justify-content: flex-start; margin-bottom: 10px; width: fit-content;">
   <div style="min-width: 190px; margin-right: 10px; font-size: 12px;">Less: Federal tax credit (30%)</div>
   <div style="min-width: 80px;text-align: right; margin-right: 10px; border-bottom: 1px solid black;">${tax}</div>
