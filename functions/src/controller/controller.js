@@ -294,6 +294,7 @@ const sendResult = async (req, res) => {
 </div>
   `;
 
+
   // let mailOptions = {
   //   from: "sales@hysolis.com", // sender address
   //   to: email, // list of receivers
@@ -335,3 +336,4 @@ module.exports = {
   getallEmail,
   login,
 };
+
